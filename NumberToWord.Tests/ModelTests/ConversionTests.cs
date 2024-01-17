@@ -35,5 +35,18 @@ namespace NumberToWords.Tests
       int result = newConversion.CheckNumLength();
       Assert.AreEqual(3, result);
     }
+    [TestMethod]
+    public void Dictionary_ReturnsNumToWord_String()
+    {
+      int userNum = 7;
+      Conversion newConversion = new Conversion(userNum);
+      string result = newConversion.Dictionary(userNum);
+      Assert.AreEqual("seven", result);
+    }
   }
 }
+
+
+// ones {1:one, 2:two}
+// ten {1: ten, 2: twenty...}
+// hundreds {1: one-hundred, 2: two-hundred}
