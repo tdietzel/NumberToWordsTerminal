@@ -36,7 +36,7 @@ namespace NumberToWords.Tests
       Assert.AreEqual(3, result);
     }
     [TestMethod]
-    public void Dictionary_ReturnsOnesNumToWord_String()
+    public void Dictionary_ReturnsOneDigitNumToWord_String()
     {
       int userNum = 7;
       Conversion newConversion = new Conversion(userNum);
@@ -50,6 +50,14 @@ namespace NumberToWords.Tests
       Conversion newConversion = new Conversion(userNum);
       string result = newConversion.Dictionary(userNum);
       Assert.AreEqual("twenty nine", result);
+    }
+    [TestMethod]
+    public void Dictionary_ReturnsThreeDigitsNumToWord_String()
+    {
+      int userNum = 119;
+      Conversion newConversion = new Conversion(userNum);
+      string result = newConversion.Dictionary(userNum);
+      Assert.AreEqual("one hundred nineteen", result);
     }
   }
 }
