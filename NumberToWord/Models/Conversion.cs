@@ -10,5 +10,11 @@ namespace NumberToWords.Models
     {
       ConversionNum = userNum;
     }
+
+    public int CheckNumLength()
+    {
+      char[] digitArray = ConversionNum.ToString().ToCharArray();
+      return digitArray.Length;
+    }
   } 
 }

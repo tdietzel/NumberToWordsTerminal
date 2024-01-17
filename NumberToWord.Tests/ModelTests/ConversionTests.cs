@@ -28,5 +28,12 @@ namespace NumberToWords.Tests
       newConversion.ConversionNum = newNum;
       Assert.AreEqual(newNum, newConversion.ConversionNum);
     }
+    [TestMethod]
+    public void CheckNumLength_ReturnsNumLength_Int()
+    {
+      Conversion newConversion = new Conversion(234);
+      int result = newConversion.CheckNumLength();
+      Assert.AreEqual(3, result);
+    }
   }
 }
