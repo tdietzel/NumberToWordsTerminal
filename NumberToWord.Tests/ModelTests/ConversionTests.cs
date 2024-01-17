@@ -20,5 +20,13 @@ namespace NumberToWords.Tests
       int result = newConversion.ConversionNum;
       Assert.AreEqual(userNum, result);
     }
-}
+    [TestMethod]
+    public void SetConversionNum_SetsConversionNum_Int()
+    {
+      Conversion newConversion = new Conversion(5);
+      int newNum = 10;
+      newConversion.ConversionNum = newNum;
+      Assert.AreEqual(newNum, newConversion.ConversionNum);
+    }
+  }
 }

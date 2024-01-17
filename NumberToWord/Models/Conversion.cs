@@ -4,7 +4,7 @@ namespace NumberToWords.Models
 {
   public class Conversion
   {
-    public int ConversionNum {get;}
+    public int ConversionNum {get; set;}
 
     public Conversion(int userNum)
     {
