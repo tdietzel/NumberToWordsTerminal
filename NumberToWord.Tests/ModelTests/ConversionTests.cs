@@ -59,6 +59,14 @@ namespace NumberToWords.Tests
       string result = newConversion.Dictionary(userNum);
       Assert.AreEqual("one hundred nineteen", result);
     }
+    [TestMethod]
+    public void Dictionary_ReturnsFourDigitsNumToWord_String()
+    {
+      int userNum = 9356;
+      Conversion newConversion = new Conversion(userNum);
+      string result = newConversion.Dictionary(userNum);
+      Assert.AreEqual("nine thousand three hundred fifty six", result);
+    }
   }
 }
 

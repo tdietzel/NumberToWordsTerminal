@@ -18,6 +18,9 @@ namespace NumberToWords.Models
       return digitArray.Length;
     }
     public string Dictionary(int userNum) {
+      Dictionary<int, string> Thousands = new Dictionary<int, string>(){
+        {1, "one thousand"}, {2, "two thousand"}, {3, "three thousand"}, {4,"four thousand"}, {5, "five thousand"}, {6, "six thousand"}, {7,"seven thousand"}, {8, "eight thousand"}, {9, "nine thousand"}
+      };
       Dictionary<int, string> Hundreds = new Dictionary<int, string>(){
         {1, "one hundred"}, {2, "two hundred"}, {3,"three hundred"}, {4, "four hundred"}, {5, "five hundred"}, {6, "six hundred"}, {7, "seven hundred"}, {8, "eight hundred"}, {9, "nine hundred"}
       };
@@ -32,7 +35,23 @@ namespace NumberToWords.Models
       };
       
       int length = CheckNumLength();
-      if(length == 3)
+      if (length == 4)
+      {
+        char[] digitArray = ConversionNum.ToString().ToCharArray();
+        int firstDigit = int.Parse(digitArray[0].ToString());
+        int secondDigit = int.Parse(digitArray[1].ToString());
+        int thirdDigit = int.Parse(digitArray[2].ToString());
+        int fourthDigit = int.Parse(digitArray[3].ToString());
+        if(thirdDigit == 1)
+        {
+          return Thousands[firstDigit] + " " + Hundreds[secondDigit] + " " + Teens[fourthDigit];
+        }
+        else
+        {
+          return Thousands[firstDigit] + " " + Hundreds[secondDigit] + " " + Tens[thirdDigit] + " " + Ones[fourthDigit];
+        }
+      }
+      else if(length == 3)
       {
         char[] digitArray = ConversionNum.ToString().ToCharArray();
         int firstDigit = int.Parse(digitArray[0].ToString());
