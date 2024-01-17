@@ -20,11 +20,19 @@ namespace NumberToWord
       Console.WriteLine("Please enter a number to convert to a word:");
       Console.WriteLine("------------------");
       string userNum = Console.ReadLine();
+      try 
+      {
       Conversion newConversion = new Conversion(int.Parse(userNum));
       string result = newConversion.Dictionary(int.Parse(userNum));
       Console.WriteLine(result);
       Console.Beep();
       Navigate();
+      }
+      catch
+      {
+        Console.WriteLine("!!!!!");
+        Console.WriteLine("Error: I SAID NUMBER!");
+      }
     }
     static void Navigate()
     {
