@@ -36,12 +36,20 @@ namespace NumberToWords.Tests
       Assert.AreEqual(3, result);
     }
     [TestMethod]
-    public void Dictionary_ReturnsNumToWord_String()
+    public void Dictionary_ReturnsOnesNumToWord_String()
     {
       int userNum = 7;
       Conversion newConversion = new Conversion(userNum);
       string result = newConversion.Dictionary(userNum);
       Assert.AreEqual("seven", result);
+    }
+    [TestMethod]
+    public void Dictionary_ReturnsTwoDigitsNumToWord_String()
+    {
+      int userNum = 29;
+      Conversion newConversion = new Conversion(userNum);
+      string result = newConversion.Dictionary(userNum);
+      Assert.AreEqual("twenty nine", result);
     }
   }
 }
