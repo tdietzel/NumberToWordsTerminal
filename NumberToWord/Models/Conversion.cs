@@ -18,6 +18,12 @@ namespace NumberToWords.Models
       return digitArray.Length;
     }
     public string Dictionary(int userNum) {
+      Dictionary<int, string> TeenThousand = new Dictionary<int, string>{
+        {0, "ten thousand"}, {1, "eleven thousand"}, {2,"twelve thousand"},{3, "thirteen thousand"}, {4, "fourteen thousand"}, {5, "fifteen thousand"}, {6, "sixteen thousand"}, {7, "seventeen thousand"}, {8, "eighteen thousand"}, {9, "nineteen thousand"}
+      };
+      Dictionary<int, string> TenThousands = new Dictionary<int, string>(){
+        {1, "ten thousand"}, {2, "twenty thousand"}, {3, "thirty thousand"}, {4, "forty thousand"}, {5, "fifty thousand"}, {6, "sixty thousand"}, {7, "seventy thousand"}, {8, "eighty thousand"}, {9, "ninety thousand"}
+      };
       Dictionary<int, string> Thousands = new Dictionary<int, string>(){
         {1, "one thousand"}, {2, "two thousand"}, {3, "three thousand"}, {4,"four thousand"}, {5, "five thousand"}, {6, "six thousand"}, {7,"seven thousand"}, {8, "eight thousand"}, {9, "nine thousand"}
       };
@@ -33,9 +39,30 @@ namespace NumberToWords.Models
       Dictionary<int, string> Ones = new Dictionary<int, string>() {
         {0,"zero"}, {1,"one"}, {2,"two"}, {3,"three"}, {4,"four"}, {5,"five"}, {6,"six"}, {7,"seven"}, {8,"eight"}, {9,"nine"}
       };
-      
       int length = CheckNumLength();
-      if (length == 4)
+      if (length == 5)
+      {
+        char[] digitArray = ConversionNum.ToString().ToCharArray();
+        int firstDigit = int.Parse(digitArray[0].ToString());
+        int secondDigit = int.Parse(digitArray[1].ToString());
+        int thirdDigit = int.Parse(digitArray[2].ToString());
+        int fourthDigit = int.Parse(digitArray[3].ToString());
+        int fifthDigit = int.Parse(digitArray[4].ToString());
+
+        if(firstDigit == 1 && secondDigit >= 3 && fourthDigit != 1)
+        {
+          return TeenThousand[secondDigit] + " " + Hundreds[thirdDigit] + " " + Tens[fourthDigit] + " " + Ones[fifthDigit];
+        }
+        else if (firstDigit == 1 && secondDigit >= 3 && fourthDigit == 1)
+        {
+          return TeenThousand[secondDigit] + " " + Hundreds[thirdDigit] + " " + Teens[fourthDigit];
+        }
+        else
+        {
+          return TenThousands[firstDigit] + " " + Thousands[secondDigit] + " " + Hundreds[thirdDigit] + " " + Tens[fourthDigit] + " " + Ones[fifthDigit];
+        }
+      }
+      else if (length == 4)
       {
         char[] digitArray = ConversionNum.ToString().ToCharArray();
         int firstDigit = int.Parse(digitArray[0].ToString());
