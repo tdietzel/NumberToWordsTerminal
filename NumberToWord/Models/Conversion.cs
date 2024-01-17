@@ -18,6 +18,7 @@ namespace NumberToWords.Models
       return digitArray.Length;
     }
     public string Dictionary(int userNum) {
+        
       Dictionary<int, string> TeenThousand = new Dictionary<int, string>{
         {0, "ten thousand"}, {1, "eleven thousand"}, {2,"twelve thousand"},{3, "thirteen thousand"}, {4, "fourteen thousand"}, {5, "fifteen thousand"}, {6, "sixteen thousand"}, {7, "seventeen thousand"}, {8, "eighteen thousand"}, {9, "nineteen thousand"}
       };
@@ -40,7 +41,34 @@ namespace NumberToWords.Models
         {0,"zero"}, {1,"one"}, {2,"two"}, {3,"three"}, {4,"four"}, {5,"five"}, {6,"six"}, {7,"seven"}, {8,"eight"}, {9,"nine"}
       };
       int length = CheckNumLength();
-      if (length == 5)
+      if (length == 6)
+      {
+        char[] digitArray = ConversionNum.ToString().ToCharArray();
+        int firstDigit = int.Parse(digitArray[0].ToString());
+        int secondDigit = int.Parse(digitArray[1].ToString());
+        int thirdDigit = int.Parse(digitArray[2].ToString());
+        int fourthDigit = int.Parse(digitArray[3].ToString());
+        int fifthDigit = int.Parse(digitArray[4].ToString());
+        int sixthDigit = int.Parse(digitArray[5].ToString());
+        
+        if(secondDigit == 1 && thirdDigit >= 3 && fifthDigit != 1)
+        {
+          return Hundreds[firstDigit] + " " + TeenThousand[thirdDigit] + " " + Hundreds[fourthDigit] + " " + Tens[fifthDigit] + " " + Ones[sixthDigit];
+        }
+        else if (secondDigit == 1 && thirdDigit >= 3 && fifthDigit == 1)
+        {
+          return Hundreds[firstDigit] + " " + TeenThousand[thirdDigit] + " " + Hundreds[fourthDigit] + " " + Teens[fifthDigit];
+        }
+        else if (fifthDigit == 1)
+        {
+          return Hundreds[firstDigit] + " " + Tens[secondDigit] + " " + Thousands[thirdDigit] + " " + Hundreds[fourthDigit] + Teens[sixthDigit];
+        }
+        else
+        {
+          return Hundreds[firstDigit] + " " + Tens[secondDigit] + " " + Thousands[thirdDigit] + " " + Hundreds[fourthDigit] + Tens[fifthDigit] + " " + Ones[sixthDigit];
+        }
+      }
+      else if (length == 5)
       {
         char[] digitArray = ConversionNum.ToString().ToCharArray();
         int firstDigit = int.Parse(digitArray[0].ToString());
@@ -57,6 +85,10 @@ namespace NumberToWords.Models
         {
           return TeenThousand[secondDigit] + " " + Hundreds[thirdDigit] + " " + Teens[fourthDigit];
         }
+        else if (fourthDigit == 1)
+        {
+          return TenThousands[firstDigit] + " " + Thousands[secondDigit] + " " + Hundreds[thirdDigit] + " " + TeenThousand[fifthDigit];
+        }
         else
         {
           return TenThousands[firstDigit] + " " + Thousands[secondDigit] + " " + Hundreds[thirdDigit] + " " + Tens[fourthDigit] + " " + Ones[fifthDigit];
@@ -69,6 +101,7 @@ namespace NumberToWords.Models
         int secondDigit = int.Parse(digitArray[1].ToString());
         int thirdDigit = int.Parse(digitArray[2].ToString());
         int fourthDigit = int.Parse(digitArray[3].ToString());
+
         if(thirdDigit == 1)
         {
           return Thousands[firstDigit] + " " + Hundreds[secondDigit] + " " + Teens[fourthDigit];
@@ -84,6 +117,7 @@ namespace NumberToWords.Models
         int firstDigit = int.Parse(digitArray[0].ToString());
         int secondDigit = int.Parse(digitArray[1].ToString());
         int thirdDigit = int.Parse(digitArray[2].ToString());
+
         if(secondDigit == 1)
         {
           return Hundreds[firstDigit] + " " + Teens[thirdDigit];
@@ -98,6 +132,7 @@ namespace NumberToWords.Models
         char[] digitArray = ConversionNum.ToString().ToCharArray();
         int firstDigit = int.Parse(digitArray[0].ToString());
         int secondDigit = int.Parse(digitArray[1].ToString());
+
         if(firstDigit == 1) 
         {
           return Teens[secondDigit];
