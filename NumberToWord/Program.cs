@@ -28,7 +28,7 @@ namespace NumberToWord
     }
     static void Navigate()
     {
-      Console.WriteLine("Would you like another number? Enter 'yes to proceed, or 'no' to exit");
+      Console.WriteLine("Would you like another number? Enter 'yes' to proceed, or 'no' to exit");
       string userInput = Console.ReadLine();
       if (userInput == "yes" || userInput == "Yes")
       {

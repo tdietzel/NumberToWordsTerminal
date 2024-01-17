@@ -23,22 +23,22 @@ namespace NumberToWords.Models
         {0, "ten thousand"}, {1, "eleven thousand"}, {2,"twelve thousand"},{3, "thirteen thousand"}, {4, "fourteen thousand"}, {5, "fifteen thousand"}, {6, "sixteen thousand"}, {7, "seventeen thousand"}, {8, "eighteen thousand"}, {9, "nineteen thousand"}
       };
       Dictionary<int, string> TenThousands = new Dictionary<int, string>(){
-        {1, "ten thousand"}, {2, "twenty thousand"}, {3, "thirty thousand"}, {4, "forty thousand"}, {5, "fifty thousand"}, {6, "sixty thousand"}, {7, "seventy thousand"}, {8, "eighty thousand"}, {9, "ninety thousand"}
+        {0, ""}, {1, "ten thousand"}, {2, "twenty thousand"}, {3, "thirty thousand"}, {4, "forty thousand"}, {5, "fifty thousand"}, {6, "sixty thousand"}, {7, "seventy thousand"}, {8, "eighty thousand"}, {9, "ninety thousand"}
       };
       Dictionary<int, string> Thousands = new Dictionary<int, string>(){
-        {1, "one thousand"}, {2, "two thousand"}, {3, "three thousand"}, {4,"four thousand"}, {5, "five thousand"}, {6, "six thousand"}, {7,"seven thousand"}, {8, "eight thousand"}, {9, "nine thousand"}
+        {0, ""}, {1, "one thousand"}, {2, "two thousand"}, {3, "three thousand"}, {4,"four thousand"}, {5, "five thousand"}, {6, "six thousand"}, {7,"seven thousand"}, {8, "eight thousand"}, {9, "nine thousand"}
       };
       Dictionary<int, string> Hundreds = new Dictionary<int, string>(){
-        {1, "one hundred"}, {2, "two hundred"}, {3,"three hundred"}, {4, "four hundred"}, {5, "five hundred"}, {6, "six hundred"}, {7, "seven hundred"}, {8, "eight hundred"}, {9, "nine hundred"}
+        {0, ""}, {1, "one hundred"}, {2, "two hundred"}, {3,"three hundred"}, {4, "four hundred"}, {5, "five hundred"}, {6, "six hundred"}, {7, "seven hundred"}, {8, "eight hundred"}, {9, "nine hundred"}
       };
       Dictionary<int, string> Tens = new Dictionary<int, string>() {
-        {2,"twenty"}, {3,"thirty"}, {4,"forty"}, {5,"fifty"}, {6,"sixty"}, {7,"seventy"}, {8,"eighty"}, {9,"ninety"}
+        {0, ""}, {2,"twenty"}, {3,"thirty"}, {4,"forty"}, {5,"fifty"}, {6,"sixty"}, {7,"seventy"}, {8,"eighty"}, {9,"ninety"}
       };
       Dictionary<int, string> Teens = new Dictionary<int, string>() {
         {0,"ten"}, {1,"eleven"}, {2,"twelve"}, {3,"thirteen"}, {4,"fourteen"}, {5,"fifteen"}, {6,"sixteen"}, {7,"seventeen"}, {8,"eighteen"}, {9,"nineteen"}
       };
       Dictionary<int, string> Ones = new Dictionary<int, string>() {
-        {0,"zero"}, {1,"one"}, {2,"two"}, {3,"three"}, {4,"four"}, {5,"five"}, {6,"six"}, {7,"seven"}, {8,"eight"}, {9,"nine"}
+        {0,""}, {1,"one"}, {2,"two"}, {3,"three"}, {4,"four"}, {5,"five"}, {6,"six"}, {7,"seven"}, {8,"eight"}, {9,"nine"}
       };
       int length = CheckNumLength();
       if (length == 6)
@@ -62,6 +62,10 @@ namespace NumberToWords.Models
         else if (fifthDigit == 1)
         {
           return Hundreds[firstDigit] + " " + Tens[secondDigit] + " " + Thousands[thirdDigit] + " " + Hundreds[fourthDigit] + Teens[sixthDigit];
+        }
+        else if (secondDigit == 0 && thirdDigit == 0 && fourthDigit == 0 && fifthDigit == 0 && sixthDigit == 0)
+        {
+          return Hundreds[firstDigit] + " thousand";
         }
         else
         {
@@ -137,6 +141,10 @@ namespace NumberToWords.Models
         {
           return Teens[secondDigit];
         }
+        else if (firstDigit == 0)
+        {
+          return "Zero";
+        }
         else
         {
           return Tens[firstDigit] + " " + Ones[secondDigit];
@@ -144,7 +152,6 @@ namespace NumberToWords.Models
       }
       else if(length == 1)
       {
-    
         return Ones[userNum];
       }
       else
