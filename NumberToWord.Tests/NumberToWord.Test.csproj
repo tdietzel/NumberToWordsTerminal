@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <!-- Change example name to fit project -->
-    <ProjectReference Include="..\ProjectName\ProjectName.csproj" />
+    <ProjectReference Include="..\NumberToWord\NumberToWord.csproj" />
   </ItemGroup>
 
 </Project>
