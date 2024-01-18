@@ -18,7 +18,9 @@ namespace NumberToWords.Models
       return digitArray.Length;
     }
     public string Dictionary(int userNum) {
-        
+      Dictionary<int, string> Millions = new Dictionary<int, string>{
+        {1, "one million"}, {2,"two million"},{3, "three million"}, {4, "four million"}, {5, "five million"}, {6, "six million"}, {7, "seven million"}, {8, "eight million"}, {9, "nine million"}
+      };  
       Dictionary<int, string> TeenThousand = new Dictionary<int, string>{
         {0, "ten thousand"}, {1, "eleven thousand"}, {2,"twelve thousand"},{3, "thirteen thousand"}, {4, "fourteen thousand"}, {5, "fifteen thousand"}, {6, "sixteen thousand"}, {7, "seventeen thousand"}, {8, "eighteen thousand"}, {9, "nineteen thousand"}
       };
@@ -41,7 +43,39 @@ namespace NumberToWords.Models
         {0,""}, {1,"one"}, {2,"two"}, {3,"three"}, {4,"four"}, {5,"five"}, {6,"six"}, {7,"seven"}, {8,"eight"}, {9,"nine"}
       };
       int length = CheckNumLength();
-      if (length == 6)
+      if (length == 7)
+      {
+        char[] digitArray = ConversionNum.ToString().ToCharArray();
+        int firstDigit = int.Parse(digitArray[0].ToString());
+        int secondDigit = int.Parse(digitArray[1].ToString());
+        int thirdDigit = int.Parse(digitArray[2].ToString());
+        int fourthDigit = int.Parse(digitArray[3].ToString());
+        int fifthDigit = int.Parse(digitArray[4].ToString());
+        int sixthDigit = int.Parse(digitArray[5].ToString());
+        int seventhDigit = int.Parse(digitArray[6].ToString());
+        
+        if(thirdDigit == 1 && fourthDigit >= 3 && sixthDigit != 1)
+        {
+          return Millions[firstDigit] + " " + Hundreds[secondDigit] + " " + TeenThousand[fourthDigit] + " " + Hundreds[fifthDigit] + " " + Tens[sixthDigit] + " " + Ones[seventhDigit];
+        }
+        else if (thirdDigit == 1 && fourthDigit >= 3 && sixthDigit == 1)
+        {
+          return Millions[firstDigit] + " " + Hundreds[secondDigit] + " " + TeenThousand[fourthDigit] + " " + Hundreds[fifthDigit] + " " + Teens[seventhDigit];
+        }
+        else if (sixthDigit == 1)
+        {
+          return Millions[firstDigit] + " " + Hundreds[secondDigit] + " " + Tens[thirdDigit] + " " + Thousands[fourthDigit] + " " + Hundreds[fifthDigit] + " " + Teens[seventhDigit];
+        }
+        else if (secondDigit == 0 && thirdDigit == 0 && fourthDigit == 0 && fifthDigit == 0 && sixthDigit == 0)
+        {
+          return Millions[firstDigit];
+        }
+        else
+        {
+          return Millions[firstDigit] + " " + Hundreds[secondDigit] + " " + Tens[thirdDigit] + " " + Thousands[fourthDigit] + " " + Hundreds[fifthDigit] + " " + Tens[sixthDigit] + " " + Ones[seventhDigit];
+        }
+      }
+      else if (length == 6)
       {
         char[] digitArray = ConversionNum.ToString().ToCharArray();
         int firstDigit = int.Parse(digitArray[0].ToString());
@@ -61,7 +95,7 @@ namespace NumberToWords.Models
         }
         else if (fifthDigit == 1)
         {
-          return Hundreds[firstDigit] + " " + Tens[secondDigit] + " " + Thousands[thirdDigit] + " " + Hundreds[fourthDigit] + Teens[sixthDigit];
+          return Hundreds[firstDigit] + " " + Tens[secondDigit] + " " + Thousands[thirdDigit] + " " + Hundreds[fourthDigit] + " " + Teens[sixthDigit];
         }
         else if (secondDigit == 0 && thirdDigit == 0 && fourthDigit == 0 && fifthDigit == 0 && sixthDigit == 0)
         {
@@ -69,7 +103,7 @@ namespace NumberToWords.Models
         }
         else
         {
-          return Hundreds[firstDigit] + " " + Tens[secondDigit] + " " + Thousands[thirdDigit] + " " + Hundreds[fourthDigit] + Tens[fifthDigit] + " " + Ones[sixthDigit];
+          return Hundreds[firstDigit] + " " + Tens[secondDigit] + " " + Thousands[thirdDigit] + " " + Hundreds[fourthDigit] + " " + Tens[fifthDigit] + " " + Ones[sixthDigit];
         }
       }
       else if (length == 5)
@@ -95,7 +129,7 @@ namespace NumberToWords.Models
         }
         else
         {
-          return TenThousands[firstDigit] + " " + Thousands[secondDigit] + " " + Hundreds[thirdDigit] + " " + Tens[fourthDigit] + " " + Ones[fifthDigit];
+          return Tens[firstDigit] + " " + Thousands[secondDigit] + " " + Hundreds[thirdDigit] + " " + Tens[fourthDigit] + " " + Ones[fifthDigit];
         }
       }
       else if (length == 4)
@@ -156,8 +190,12 @@ namespace NumberToWords.Models
       }
       else
       {
-        return "";
+        return "I cant count that high yet!";
       }
     }
   } 
 }
+
+// 234785 returns ||| two hundred thirty four thousand seven hundredeighty five
+// 96782 returns ||| ninety thousand six thousand seven hundred eighty two
+// error handling for if the user doesnt type 'yes' or 'no'

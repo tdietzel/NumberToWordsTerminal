@@ -83,9 +83,16 @@ namespace NumberToWords.Tests
       string result = newConversion.Dictionary(userNum);
       Assert.AreEqual("one hundred sixteen thousand four hundred fifty six", result);
     }
+    [TestMethod]
+    public void Dictionary_ReturnsSevenDigitsNumToWord_String()
+    {
+      int userNum = 1219813;
+      Conversion newConversion = new Conversion(userNum);
+      string result = newConversion.Dictionary(userNum);
+      Assert.AreEqual("one million two hundred nineteen thousand eight hundred thirteen", result);
+    }
   }
 }
-
 
 // ones {1:one, 2:two}
 // ten {1: ten, 2: twenty...}
