@@ -91,9 +91,20 @@ namespace NumberToWords.Tests
       string result = newConversion.Dictionary(userNum);
       Assert.AreEqual("one million two hundred nineteen thousand eight hundred thirteen", result);
     }
+    [TestMethod]
+    public void Dictionary_ReturnsEightDigitsNumToWord_String()
+    {
+      int userNum = 13519217;
+      Conversion newConversion = new Conversion(userNum);
+      string result = newConversion.Dictionary(userNum);
+      Assert.AreEqual("thirteen million five hundred nineteen thousand two hundred seventeen", result);
+    }
   }
 }
 
 // ones {1:one, 2:two}
 // ten {1: ten, 2: twenty...}
 // hundreds {1: one-hundred, 2: two-hundred}
+
+// 13,519,217
+// 43,569,237
