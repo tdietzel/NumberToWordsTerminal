@@ -1,5 +1,6 @@
 using NumberToWords.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NumberToWords.Models
 {
@@ -18,6 +19,9 @@ namespace NumberToWords.Models
       return digitArray.Length;
     }
     public string Dictionary(int userNum) {
+      // Dictionary<int, string> TeenBillion = new Dictionary<int, string>{
+      //   {0, "ten billion"}, {1, "eleven billion"}, {2,"twelve billion"},{3, "thirteen billion"}, {4, "fourteen billion"}, {5, "fifteen billion"}, {6, "sixteen billion"}, {7, "seventeen billion"}, {8, "eighteen billion"}, {9, "nineteen billion"}
+      // };
       Dictionary<int, string> OneBillions = new Dictionary<int, string>{
         {0, ""}, {1, "one billion"}, {2,"two billion"},{3, "three billion"}, {4, "four billion"}, {5, "five billion"}, {6, "six billion"}, {7, "seven billion"}, {8, "eight billion"}, {9, "nine billion"}
       };
@@ -53,6 +57,72 @@ namespace NumberToWords.Models
       };
 
       int length = CheckNumLength();
+      // if (length == 11)
+      // {
+      //   char[] digitArray = CheckNumLength().ToString().ToCharArray();
+      //   int[] digits = digitArray.Select(c => int.Parse(c.ToString())).ToArray();
+
+      //   int firstDigit = (int)digits[0];
+      //   int secondDigit = (int)digits[1];
+      //   int thirdDigit = (int)digits[2];
+      //   int fourthDigit = (int)digits[3];
+      //   int fifthDigit = (int)digits[4];
+      //   int sixthDigit = (int)digits[5];
+      //   int seventhDigit = (int)digits[6];
+      //   int eighthDigit = (int)digits[7];
+      //   int ninthDigit = (int)digits[8];
+      //   int tenthDigit = (int)digits[9];
+      //   int eleventhDigit = (int)digits[10];
+        
+      //   if (firstDigit == 1 && secondDigit >= 3 && fourthDigit == 1 && fifthDigit >= 3 && seventhDigit == 1 && eighthDigit >= 3 && tenthDigit == 1 && eleventhDigit >= 3)
+      //   {
+      //     return TeenBillion[secondDigit] + " " + Hundreds[thirdDigit] + " " + TeenMillion[fifthDigit] + " " + Hundreds[sixthDigit] + " " + TeenThousand[eighthDigit] + " " + Hundreds[ninthDigit] + " " + Teens[eleventhDigit];
+      //   }
+      //   else if (firstDigit == 1 && secondDigit >= 3 && fourthDigit != 1 && seventhDigit == 1 && eighthDigit >= 3 && tenthDigit == 1 && eleventhDigit >= 3)
+      //   {
+      //     return TeenBillion[secondDigit] + " " + Hundreds[thirdDigit] + " " + Tens[fourthDigit] + " " + Millions[fifthDigit] + " " + Hundreds[sixthDigit] + " " + TeenThousand[eighthDigit] + " " + Hundreds[ninthDigit] + " " + Teens[eleventhDigit];
+      //   }
+      //   else if (firstDigit == 1 && secondDigit >= 3 && fourthDigit == 1 && fifthDigit >= 3 && seventhDigit != 1 && tenthDigit == 1 && eleventhDigit >= 3)
+      //   {
+      //     return TeenBillion[secondDigit] + " " + Hundreds[thirdDigit] + " " + Tens[fourthDigit] + " " + Millions[fifthDigit] + " " + Hundreds[sixthDigit] + " " + Tens[seventhDigit] + " " + Thousands[eighthDigit] + " " + Hundreds[ninthDigit] + " " + Teens[eleventhDigit];
+      //   }
+      //   else if (firstDigit == 1 && secondDigit >= 3 && fourthDigit == 1 && fifthDigit >= 3 && seventhDigit == 1 && eighthDigit >= 3 && tenthDigit != 1)
+      //   {
+      //     return TeenBillion[secondDigit] + " " + Hundreds[thirdDigit] + " " + TeenMillion[fifthDigit] + " " + Hundreds[sixthDigit] + " " + TeenThousand[eighthDigit] + " " + Hundreds[ninthDigit] + " " + Tens[tenthDigit] + Ones[eleventhDigit];
+      //   }
+      //   else if (fourthDigit == 1 && fifthDigit >= 3 && seventhDigit == 1 && eighthDigit >= 3 && tenthDigit == 1 && eleventhDigit >= 3)
+      //   {
+      //     return Tens[firstDigit] + " " + OneBillions[secondDigit] + " " + Hundreds[thirdDigit] + " " + TeenMillion[fifthDigit] + " " + Hundreds[sixthDigit] + " " + TeenThousand[eighthDigit] + " " + Hundreds[ninthDigit] + " " + Teens[eleventhDigit];
+      //   }
+      //   else if (fourthDigit == 1 && fifthDigit >= 3 && seventhDigit == 1 && eighthDigit >= 3 && tenthDigit != 1)
+      //   {
+      //     return Tens[firstDigit] + " " + OneBillions[secondDigit] + " " + Hundreds[thirdDigit] + " " + TeenMillion[fifthDigit] + " " + Hundreds[sixthDigit] + " " + TeenThousand[eighthDigit] + " " + Hundreds[ninthDigit] + " " + Tens[tenthDigit] + " " + Ones[eleventhDigit];
+      //   }
+      //   else if (fourthDigit == 1 && fifthDigit >= 3 && seventhDigit != 1 || eighthDigit <= 3 && tenthDigit != 1)
+      //   {
+      //     return Tens[firstDigit] + " " + OneBillions[secondDigit] + " " + Hundreds[thirdDigit] + " " + TeenMillion[fifthDigit] + " " + Hundreds[sixthDigit] + " " + Tens[seventhDigit] + " " + Thousands[eighthDigit] + " " + Hundreds[ninthDigit] + " " + Tens[tenthDigit] + " " + Ones[eleventhDigit];
+      //   }
+      //   else if (fourthDigit != 1 && seventhDigit == 1 && eighthDigit >= 3 && tenthDigit != 1)
+      //   {
+      //     return Tens[firstDigit] + " " + OneBillions[secondDigit] + " " + Hundreds[thirdDigit] + " " + Tens[fourthDigit] + " " + Millions[fifthDigit] + " " + Hundreds[sixthDigit] + " " + TeenThousand[eighthDigit] + " " + Hundreds[ninthDigit] + " " + Tens[tenthDigit] + " " + Ones[eleventhDigit];
+      //   }
+      //   else if (fourthDigit != 1 && seventhDigit != 1 && tenthDigit == 1 && eleventhDigit >= 3)
+      //   {
+      //     return Tens[firstDigit] + " " + OneBillions[secondDigit] + " " + Hundreds[thirdDigit] + " " + Tens[fourthDigit] + " " + Millions[fifthDigit] + " " + Hundreds[sixthDigit] + " " + Tens[seventhDigit] + " " + Thousands[eighthDigit] + " " + Hundreds[ninthDigit] + " " + Teens[eleventhDigit];
+      //   }
+      //   else if (firstDigit == 1 && secondDigit >= 3 && fourthDigit != 1 && seventhDigit != 1 && tenthDigit != 1)
+      //   {
+      //     return TeenBillion[secondDigit] + " " + Hundreds[thirdDigit] + " " + Tens[fourthDigit] + " " + Millions[fifthDigit] + " " + Hundreds[sixthDigit] + " " + Tens[seventhDigit] + " " + Thousands[eighthDigit] + " " + Hundreds[ninthDigit] + " " + Tens[tenthDigit] + " " + Ones[eleventhDigit];
+      //   }
+      //   else if (secondDigit == 0 && thirdDigit == 0 && fourthDigit == 0 && fifthDigit == 0 && sixthDigit == 0 && seventhDigit == 0 && eighthDigit == 0 && ninthDigit == 0 && tenthDigit == 0 && eleventhDigit == 0)
+      //   {
+      //     return Tens[firstDigit] + " " + OneBillions[secondDigit] + " " + Hundreds[thirdDigit] + " " + TenMillions[fourthDigit];
+      //   }
+      //   else
+      //   {
+      //     return Tens[firstDigit] + " " + OneBillions[secondDigit] + " " + Hundreds[thirdDigit] + " " + Tens[fourthDigit] + " " + Millions[fifthDigit] + " " + Hundreds[sixthDigit] + " " + Tens[seventhDigit] + " " + Thousands[eighthDigit] + " " + Hundreds[ninthDigit] + " " + Tens[tenthDigit] + " " + Ones[eleventhDigit];
+      //   }
+      // }
       if (length == 10)
       {
         char[] digitArray = ConversionNum.ToString().ToCharArray();

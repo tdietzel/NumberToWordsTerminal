@@ -115,6 +115,14 @@ namespace NumberToWords.Tests
       string result = newConversion.Dictionary(userNum);
       Assert.AreEqual("one billion six hundred seventeen million nine hundred thirteen thousand six hundred fifteen", result);
     }
+    // [TestMethod]
+    // public void Dictionary_ReturnsElevenDigitsNumToWord_String()
+    // {
+    //   long userNum = 17214518119;
+    //   Conversion newConversion = new Conversion(userNum);
+    //   string result = newConversion.Dictionary(userNum);
+    //   Assert.AreEqual("seventeen billion two hundred fourteen million five hundred eighteen thousand one hundred nineteen", result);
+    // }
   }
 }
 
