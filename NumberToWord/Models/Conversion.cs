@@ -22,7 +22,7 @@ namespace NumberToWords.Models
         {1, "eleven million"}, {2,"twelve million"},{3, "thirteen million"}, {4, "fourteen million"}, {5, "fifteen million"}, {6, "sixteen million"}, {7, "seventeen million"}, {8, "eighteen million"}, {9, "nineteen million"}
       };
       Dictionary<int, string> TenMillions = new Dictionary<int, string>{
-        {1, "ten million"}, {2,"twenty million"},{3, "thirty million"}, {4, "fourty million"}, {5, "fifty million"}, {6, "sixty million"}, {7, "seventy million"}, {8, "eighty million"}, {9, "ninety million"}
+        {1, "ten million"}, {2,"twenty million"},{3, "thirty million"}, {4, "forty million"}, {5, "fifty million"}, {6, "sixty million"}, {7, "seventy million"}, {8, "eighty million"}, {9, "ninety million"}
       };
       Dictionary<int, string> Millions = new Dictionary<int, string>{
         {0, ""}, {1, "one million"}, {2,"two million"},{3, "three million"}, {4, "four million"}, {5, "five million"}, {6, "six million"}, {7, "seven million"}, {8, "eight million"}, {9, "nine million"}
@@ -49,7 +49,7 @@ namespace NumberToWords.Models
         {0,""}, {1,"one"}, {2,"two"}, {3,"three"}, {4,"four"}, {5,"five"}, {6,"six"}, {7,"seven"}, {8,"eight"}, {9,"nine"}
       };
       int length = CheckNumLength();
-      if (length == 8)
+      if (length == 9)
       {
         char[] digitArray = ConversionNum.ToString().ToCharArray();
         int firstDigit = int.Parse(digitArray[0].ToString());
@@ -60,24 +60,66 @@ namespace NumberToWords.Models
         int sixthDigit = int.Parse(digitArray[5].ToString());
         int seventhDigit = int.Parse(digitArray[6].ToString());
         int eighthDigit = int.Parse(digitArray[7].ToString());
-
+        int ninthDigit = int.Parse(digitArray[8].ToString());
+        
+        if (secondDigit == 1 && thirdDigit >= 3 && fifthDigit == 1 && sixthDigit >= 3 && eighthDigit == 1 && ninthDigit >= 3)
+        {
+          return Hundreds[firstDigit] + " " + TeenMillion[thirdDigit] + " " + Hundreds[fourthDigit] + " " + TeenThousand[sixthDigit] + " " + Hundreds[seventhDigit] + " " + Teens[ninthDigit];
+        }
+        else if (secondDigit == 1 && thirdDigit >= 3 && fifthDigit == 1 && sixthDigit >= 3 && eighthDigit != 1)
+        {
+          return Hundreds[firstDigit] + " " + TeenMillion[thirdDigit] + " " + Hundreds[fourthDigit] + " " + TeenThousand[sixthDigit] + " " + Hundreds[seventhDigit] + " " + Tens[eighthDigit] + " " + Ones[ninthDigit];
+        }
+        else if (secondDigit == 1 && thirdDigit >= 3 && fifthDigit != 1 || sixthDigit <= 3 && eighthDigit != 1)
+        {
+          return Hundreds[firstDigit] + " " + TeenMillion[thirdDigit] + " " + Hundreds[fourthDigit] + " " + Tens[fifthDigit] + " " + Thousands[sixthDigit] + " " + Hundreds[seventhDigit] + " " + Tens[eighthDigit] + " " + Ones[ninthDigit];
+        }
+        else if (secondDigit != 1 && fifthDigit == 1 && sixthDigit >= 3 && eighthDigit != 1)
+        {
+          return Hundreds[firstDigit] + " " + Tens[secondDigit] + " " + Millions[thirdDigit] + " " + Hundreds[fourthDigit] + " " + TeenThousand[sixthDigit] + " " + Hundreds[seventhDigit] + " " + Tens[eighthDigit] + " " + Ones[ninthDigit];
+        }
+        else if (secondDigit != 1 && fifthDigit != 1 && eighthDigit == 1 && ninthDigit >= 3)
+        {
+          return Hundreds[firstDigit] + " " + Tens[secondDigit] + " " + Millions[thirdDigit] + " " + Hundreds[fourthDigit] + " " + Tens[fifthDigit] + " " + Thousands[sixthDigit] + " " + Hundreds[seventhDigit] + " " + Teens[ninthDigit];
+        }
+        else if (secondDigit == 0 && thirdDigit == 0 && fourthDigit == 0 && fifthDigit == 0 && sixthDigit == 0 && seventhDigit == 0 && eighthDigit == 0 && ninthDigit == 0)
+        {
+          return Hundreds[firstDigit] + " " + TenMillions[secondDigit];
+        }
+        else
+        {
+          return Hundreds[firstDigit] + " " + Tens[secondDigit] + " " + Millions[thirdDigit] + " " + Hundreds[fourthDigit] + " " + Tens[fifthDigit] + " " + Thousands[sixthDigit] + " " + Hundreds[seventhDigit] + " " + Tens[eighthDigit] + " " + Ones[ninthDigit];
+        }
+      }
+      else if (length == 8)
+      {
+        char[] digitArray = ConversionNum.ToString().ToCharArray();
+        int firstDigit = int.Parse(digitArray[0].ToString());
+        int secondDigit = int.Parse(digitArray[1].ToString());
+        int thirdDigit = int.Parse(digitArray[2].ToString());
+        int fourthDigit = int.Parse(digitArray[3].ToString());
+        int fifthDigit = int.Parse(digitArray[4].ToString());
+        int sixthDigit = int.Parse(digitArray[5].ToString());
+        int seventhDigit = int.Parse(digitArray[6].ToString());
+        int eighthDigit = int.Parse(digitArray[7].ToString());
+        
         if (firstDigit == 1 && secondDigit >= 3 && fourthDigit == 1 && fifthDigit >= 3 && seventhDigit == 1 && eighthDigit >= 3)
         {
           return TeenMillion[secondDigit] + " " + Hundreds[thirdDigit] + " " + TeenThousand[fifthDigit] + " " + Hundreds[sixthDigit] + " " + Teens[eighthDigit];
         }
-        else if (firstDigit == 1 && secondDigit >= 3 && fourthDigit == 1 && fifthDigit >= 3 && seventhDigit != 1 || eighthDigit <= 3)
+        else if (firstDigit == 1 && secondDigit >= 3 && fourthDigit == 1 && fifthDigit >= 3 && seventhDigit != 1)
         {
           return TeenMillion[secondDigit] + " " + Hundreds[thirdDigit] + " " + TeenThousand[fifthDigit] + " " + Hundreds[sixthDigit] + " " + Tens[seventhDigit] + " " + Ones[eighthDigit];
         }
-        else if (firstDigit == 1 && secondDigit >= 3 && fourthDigit != 1 || fifthDigit <= 3 && seventhDigit != 1 || eighthDigit <= 3)
+        else if (firstDigit == 1 && secondDigit >= 3 && fourthDigit != 1 || fifthDigit <= 3 && seventhDigit != 1)
         {
           return TeenMillion[secondDigit] + " " + Hundreds[thirdDigit] + " " + Tens[fourthDigit] + " " + Thousands[fifthDigit] + " " + Hundreds[sixthDigit] + " " + Tens[seventhDigit] + " " + Ones[eighthDigit];
         }
-        else if (firstDigit != 1 || secondDigit <= 3 && fourthDigit == 1 && fifthDigit >= 3 && seventhDigit != 1 || eighthDigit <= 3)
+        else if (firstDigit != 1 && fourthDigit == 1 && fifthDigit >= 3 && seventhDigit != 1)
         {
           return Tens[firstDigit] + " " + Millions[secondDigit] + " " + Hundreds[thirdDigit] + " " + TeenThousand[fifthDigit] + " " + Hundreds[sixthDigit] + " " + Tens[seventhDigit] + " " + Ones[eighthDigit];
         }
-        else if (firstDigit != 1 || secondDigit <= 3 && fourthDigit != 1 || fifthDigit <= 3 && seventhDigit == 1 && eighthDigit >= 3)
+        else if (firstDigit != 1 && fourthDigit != 1 && seventhDigit == 1 && eighthDigit >= 3)
         {
           return Tens[firstDigit] + " " + Millions[secondDigit] + " " + Hundreds[thirdDigit] + " " + Tens[fourthDigit] + " " + Thousands[fifthDigit] + " " + Hundreds[sixthDigit] + " " + Teens[eighthDigit];
         }
@@ -90,7 +132,7 @@ namespace NumberToWords.Models
           return Tens[firstDigit] + " " + Millions[secondDigit] + " " + Hundreds[thirdDigit] + " " + Tens[fourthDigit] + " " + Thousands[fifthDigit] + " " + Hundreds[sixthDigit] + " " + Tens[seventhDigit] + " " + Ones[eighthDigit];
         }
       }
-      if (length == 7)
+      else if (length == 7)
       {
         char[] digitArray = ConversionNum.ToString().ToCharArray();
         int firstDigit = int.Parse(digitArray[0].ToString());
@@ -243,6 +285,7 @@ namespace NumberToWords.Models
   } 
 }
 
-// 234785 returns ||| two hundred thirty four thousand seven hundredeighty five
-// 96782 returns ||| ninety thousand six thousand seven hundred eighty two
+// FIXED... 234785 returns ||| two hundred thirty four thousand seven hundredeighty five
+// FIXED... 96782 returns ||| ninety thousand six thousand seven hundred eighty two
+// FIXED... 76258399 returns ||| seventy six million two hundred eighteen thousand three hundred ninety nine
 // error handling for if the user doesnt type 'yes' or 'no'

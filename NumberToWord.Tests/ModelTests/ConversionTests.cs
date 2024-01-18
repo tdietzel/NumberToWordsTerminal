@@ -99,6 +99,14 @@ namespace NumberToWords.Tests
       string result = newConversion.Dictionary(userNum);
       Assert.AreEqual("thirteen million five hundred nineteen thousand two hundred seventeen", result);
     }
+    [TestMethod]
+    public void Dictionary_ReturnsNineDigitsNumToWord_String()
+    {
+      int userNum = 513319617;
+      Conversion newConversion = new Conversion(userNum);
+      string result = newConversion.Dictionary(userNum);
+      Assert.AreEqual("five hundred thirteen million three hundred nineteen thousand six hundred seventeen", result);
+    }
   }
 }
 
