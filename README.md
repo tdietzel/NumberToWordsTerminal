@@ -1,28 +1,18 @@
-# *PROJECT NAME*
-#### By Trent Dietzel
+# NumberToWords
+#### By Trent Dietzel & Monica Barboza & Zuri Gallegos
 
 ## Table of Contents
 - [About](#about)
-- [Demo](#demo)
 - [Technologies Used](#technologies-used)
 - [Features](#features)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Contributing](#contributing)
 - [Known Bugs](#known-bugs)
 - [License](#license)
 - [Contact](#contact)
 
 ## About
-*ABOUT SECTION*
-
-The primary functionality of the application is *FILL IN*...:
-- 
-- 
-- 
-
-## Demo
-You can try out the live demo of *PROJECT NAME* [here](https://tdietzel22.github.io/*PROJECTNAME*/).
+The primary functionality of the application is to convert a given number into its word representation.
 
 ## Technologies Used
 - **Language**: C#
@@ -34,8 +24,7 @@ You can try out the live demo of *PROJECT NAME* [here](https://tdietzel22.github
 - **Build Tool**: MSBuild
 
 ## Features
-- **FEATURE**: 
-- **FEATURE**: 
+- **Number to Word Conversion**: Convert a numeric input into its word representation.
 
 ## Installation
 
@@ -43,11 +32,11 @@ Follow these steps to set up the project locally:
 1. Open Git BASH [Download Link](https://gitforwindows.org/)
 2. Clone the repository to your local machine:
    ```bash
-   git clone https://github.com/tdietzel/*PROJECT NAME*
+   git clone https://github.com/tdietzel/*Number_To_Words*
    ```
 3. Open the project directory:
    ```bash
-   cd *PROJECT NAME*
+   cd *Number_To_Words*
    ```
 4. Open in a code editor like __Visual Studio Code__.
 5. In the command line, run the command ``` dotnet run ``` to compile and execute the console application. Since this is a console application, you'll interact with it through text commands in your terminal.
@@ -65,7 +54,7 @@ I welcome contributions to improve the project. If you'd like to contribute, ple
 
 ## Known Bugs
 
-* _N/A_
+* _Currently goes to 1 billion but still a WIP for anything bigger_
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
